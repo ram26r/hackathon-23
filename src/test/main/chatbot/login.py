@@ -39,7 +39,7 @@ def signup():
     if not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email):
         return jsonify({'message': 'Invalid email address'})
 
-    # Insert new user data into the database
+    # Insert Bot-Module user data into the database
     user_id = users_collection.insert_one({'username': username, 'password': password, 'email': email}).inserted_id
 
     return jsonify({'message': 'User created', 'user_id': str(user_id)})
