@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/nav.css') }}"> -->
+  <title>Chatbot UI</title>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>Chatbot</h2>
+    </div>
+    <div class="chat-history" id="chat-history">
+      <!-- Chat messages will be dynamically added here -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="user-input" class="message-input" placeholder="Type your message...">
+      <!--<button id="send-btn">Send</button>-->
+      <a href="#" id="send-btn" class="send-message-chat-buttons"><i class="fas fa-paper-plane"></i></a>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
