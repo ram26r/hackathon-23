@@ -123,6 +123,21 @@ class GitAPIMethods:
         url = APIGenerics.construct_url(baseUrl,GitVariables.downloadArtifactByBranchId,projectId,branchName,artifactPath,jobName)
         return APIGenerics.genericTemplate_InvokingGETAPI(url,token)
 
+    def getProjectStatistics(self, token, baseUrl, projectId):
+        #  GET /projects/:projectId/statistics
+        url = APIGenerics.construct_url(baseUrl, GitVariables.projectStatistics, projectId)
+        APIGenerics.genericTemplate_InvokingGETAPI(url,token)
+
+    def getProjectsList(self, token, baseUrl):
+        #  GET /projects
+        url = APIGenerics.construct_url(baseUrl, GitVariables.projects)
+        APIGenerics.genericTemplate_InvokingGETAPI(url, token)
+    
+    def getRepositoriesList(self, token, baseUrl, projectId):
+        #  GET /projects/:id/repository/tree
+        url = APIGenerics.construct_url(baseUrl, GitVariables.repositories, projectId)
+        APIGenerics.genericTemplate_InvokingGETAPI(url, token)
+
 
 
 
