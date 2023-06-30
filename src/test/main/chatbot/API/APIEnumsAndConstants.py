@@ -19,7 +19,9 @@ pipeline="/projects/{}/pipelines/{}"
 pipelineTestReport="/projects/{}/pipelines/{}/test_report"
 pipeTestReportSummary="/projects/{}/pipelines/{}/test_report_summary"
 pipelineLatest="/projects/{}/pipelines/latest"
-
+projectStatistics="/projects/{}/statistics"
+projects="/projects"
+repositories="/projects/{}/repository/tree"
 
 ##region error message##
 err_msg_git_generic="Request cannot be processed"

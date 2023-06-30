@@ -98,6 +98,21 @@ class GitAPIMethods:
         url = APIGenerics.construct_url(baseUrl,projectMembers,projectId)
         APIGenerics.genericTemplate_InvokingGETAPI(url,token)
 
+    
+    def getProjectStatistics(self, token, baseUrl, projectId):
+        #  GET /projects/:projectId/statistics
+        url = APIGenerics.construct_url(baseUrl, projectStatistics, projectId)
+        APIGenerics.genericTemplate_InvokingGETAPI(url,token)
+
+    def getProjectsList(self, token, baseUrl):
+        #  GET /projects
+        url = APIGenerics.construct_url(baseUrl, projects)
+        APIGenerics.genericTemplate_InvokingGETAPI(url, token)
+    
+    def getRepositoriesList(self, token, baseUrl, projectId):
+        #  GET /projects/:id/repository/tree
+        url = APIGenerics.construct_url(baseUrl, repositories, projectId)
+        APIGenerics.genericTemplate_InvokingGETAPI(url, token)
 
 
 
