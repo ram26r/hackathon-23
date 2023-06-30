@@ -16,7 +16,7 @@ class GitVariables:
     projectMembers="/projects/{}/members"
     jobArtifacts="/projects/{}/jobs/{}/artifacts"
     projectMergeRequests="/projects/{}/merge_requests"
-    projectMergeRequests="/projects/{}/merge_requests?state={}"
+    projectMergeRequestsWithFilter="/projects/{}/merge_requests?state={}"
     pipelines="/projects/{}/pipelines"
     pipeline="/projects/{}/pipelines/{}"
     pipelineTestReport="/projects/{}/pipelines/{}/test_report"

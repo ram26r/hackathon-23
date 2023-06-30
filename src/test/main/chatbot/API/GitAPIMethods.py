@@ -70,7 +70,7 @@ class GitAPIMethods:
 
     '''This method is to get merge requests with filter Ex:state=open'''
     def getMergeRequestsWithFilter(self,token,baseUrl,projectId,state):
-        url = APIGenerics.construct_url(baseUrl,GitVariables.projectMergeRequests,projectId,state)
+        url = APIGenerics.construct_url(baseUrl,GitVariables.projectMergeRequestsWithFilter,projectId,state)
         return APIGenerics.genericTemplate_InvokingGETAPI(url,token)
 
     '''This method is to get pipelines in a project'''
