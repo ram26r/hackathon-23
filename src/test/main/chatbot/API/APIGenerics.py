@@ -14,67 +14,67 @@ class APIGenerics:
                     url = APIGenerics.construct_url(self, baseUrl, GitVariables.branch, *args)
 
                 case APIUrlEnum.GetRepositoryCommits:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.commits, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.commits, *args)
 
                 case APIUrlEnum.GetCommitById:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.commit, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.commit, *args)
 
                 case APIUrlEnum.GetCommitReferences:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.references, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.references, *args)
 
                 case APIUrlEnum.GetJobs:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.projectJobs, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.projectJobs, *args)
 
                 case APIUrlEnum.GetPipelineJobs:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipelineJobs, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipelineJobs, *args)
 
                 case APIUrlEnum.GetPipelineTriggerJobs:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipeTriggerJobs, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipeTriggerJobs, *args)
 
                 case APIUrlEnum.GetJobById:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.job, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.job, *args)
 
                 case APIUrlEnum.GetJobFileById:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.jobLogFile, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.jobLogFile, *args)
 
                 case APIUrlEnum.GetJobArtifacts:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.jobArtifacts, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.jobArtifacts, *args)
 
                 case APIUrlEnum.GetMergeRequests:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.projectMergeRequests, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.projectMergeRequests, *args)
 
                 case APIUrlEnum.GetMergeRequestsWithFilter:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.projectMergeRequests, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.projectMergeRequests, *args)
 
                 case APIUrlEnum.GetPipelines:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipelines, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipelines, *args)
 
                 case APIUrlEnum.GetPipelineById:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipeline, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipeline, *args)
 
                 case APIUrlEnum.GetPipelineReport:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipelineTestReport, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipelineTestReport, *args)
 
                 case APIUrlEnum.GetPipelineReportSummary:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipeTestReportSummary, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipeTestReportSummary, *args)
 
                 case APIUrlEnum.GetLatestPipeline:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.pipelineLatest, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.pipelineLatest, *args)
 
                 case APIUrlEnum.GetGroupMembers:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.groupMembers, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.groupMembers, *args)
 
                 case APIUrlEnum.GetProjectMembers:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.projectMembers, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.projectMembers, *args)
 
                 case APIUrlEnum.GetDownloadArtifacts:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.downloadArtifactsArchive, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.downloadArtifactsArchive, *args)
 
                 case APIUrlEnum.GetDownloadArtifactByJobId:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.downloadArtifactByJobId, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.downloadArtifactByJobId, *args)
 
                 case APIUrlEnum.GetDownloadArtifactByBranchId:
-                    url = APIGenerics.construct_url(self,baseUrl, GitVariables.downloadArtifactByBranchId, *args)
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.downloadArtifactByBranchId, *args)
 
             return APIGenerics.genericTemplate_InvokingGETAPI(self, url, token)
         except:
@@ -157,11 +157,11 @@ class APIGenerics:
 
     '''This method is to extract the value of the field name from commits response based on the Enum passed'''
     def get_values_from_commits(self, resp, commitsEnum):
-        field=""
+        field = ""
         try:
             match commitsEnum:
                 case CommitResponseEnum.Id:
-                    field=GitVariables.id
+                    field = GitVariables.id
                 case CommitResponseEnum.WebUrl:
                     field = GitVariables.web_url
                 case CommitResponseEnum.CommittedDate:
@@ -169,7 +169,7 @@ class APIGenerics:
                 case CommitResponseEnum.CommitterEmail:
                     field = GitVariables.committer_email
                 case CommitResponseEnum.CommitterName:
-                    field=GitVariables.committer_name
+                    field = GitVariables.committer_name
                 case CommitResponseEnum.AuthoredDate:
                     field = GitVariables.authored_date
                 case CommitResponseEnum.AuthorEmail:
@@ -330,4 +330,3 @@ class APIGenerics:
             return APIGenerics.get_value_from_response(self, temp_res, field)
         except:
             return GitVariables.err_msg_git_codeError
-
