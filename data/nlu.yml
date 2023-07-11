@@ -1,0 +1,23 @@
+version: "3.1"
+
+nlu:
+  - intent: greet
+    examples: |
+      - Hi
+      - Hello
+      - Hey there
+      - Hi, how are you?
+
+  - intent: goodbye
+    examples: |
+      - Goodbye
+      - Bye
+      - See you later
+      - Have a nice day
+
+  - intent: get_branches
+    examples: |
+      - Get branches
+      - Show me the branches
+      - List all branches
+      - What are the branches?

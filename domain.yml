@@ -1,0 +1,56 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - get_branches
+
+entities:
+  - git_token
+  - git_base_url
+  - git_project_id
+
+slots:
+  git_token:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: git_token
+
+  git_base_url:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: git_base_url
+
+  git_project_id:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: git_project_id
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you?"
+
+  utter_goodbye:
+    - text: "Goodbye! Have a great day."
+
+actions:
+  - custom_actions.GetBranchesAction
+#  - action_get_branches
+
+forms:
+  project_form:
+    required_slots:
+      - git_token
+      - git_base_url
+      - git_project_id
+
+templates:
+  utter_ask_git_token:
+    - text: "Please provide your Git token."
+  utter_ask_git_base_url:
+    - text: "Please provide the base URL of your Git server."
+  utter_ask_git_project_id:
+    - text: "Please provide the project ID."

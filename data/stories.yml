@@ -1,0 +1,29 @@
+version: "3.1"
+
+stories:
+  - story: User greets
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - story: User says goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: User requests branches
+    steps:
+      - intent: get_branches
+      - action: project_form
+      - active_loop: project_form
+
+  - story: User provides project details
+    steps:
+      - action: project_form
+      - active_loop: project_form
+      - slot_was_set:
+          - git_token: "your-git-token"
+          - git_base_url: "your-git-base-url"
+          - git_project_id: "your-git-project-id"
+      - action: custom_actions.GetBranchesAction
+

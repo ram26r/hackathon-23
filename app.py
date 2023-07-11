@@ -44,10 +44,9 @@ def login():
             session['username'] = username
             return redirect('/dashboard')
         else:
-            error = 'Invalid username or password'
-            # return redirect(url_for('login', error=error))
-            return render_template('login-register.html', error='Invalid username or password')
-    # error = request.args.get('error')
+            error_message = 'Invalid username or password'
+            clear_timeout = 3000
+            return render_template('login-register.html', error=error_message, clear_timeout=clear_timeout)
     return render_template('login-register.html')
 
 
