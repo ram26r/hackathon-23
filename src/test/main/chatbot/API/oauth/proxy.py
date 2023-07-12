@@ -12,6 +12,7 @@ app = FastAPI()
 
 HTTPS_SCHEME = os.environ.get("HTTPS_SCHEME")
 GITLAB_NETLOC = os.environ.get("GITLAB_NETLOC")
+JIRA_NETLOC = os.environ.get("JIRA_NETLOC")
 PROXY_NETLOC = os.environ.get("PROXY_NETLOC")
 
 OAUTH_TOKEN_URL = os.environ.get("OAUTH_TOKEN_URL")
@@ -22,6 +23,8 @@ CLIENT_SECRET = os.environ.get("CLIENT_SECRET")
 STATE = os.environ.get("STATE")
 SCOPE = os.environ.get("SCOPE")
 
+CLIENT_ID_JIRA = os.environ.get("CLIENT_ID_JIRA")
+CLIENT_SECRET_JIRA = os.environ.get("CLIENT_SECRET_JIRA")
 
 @app.get("/get_access_token")
 async def get_access_token(code: str, state: str):
@@ -35,6 +38,26 @@ async def get_access_token(code: str, state: str):
     headers = {"Accept": "application/json"}
     url = build_url(HTTPS_SCHEME, GITLAB_NETLOC, OAUTH_TOKEN_URL)
     data = requests.post(url=url, headers=headers, params=query_params)
+    
+    return data.json()
+
+
+@app.get("/get_access_token_jira")
+async def get_access_token_jira(state: str, code: str):
+    JIRA_GET_ACCESS_TOKEN_URL = os.environ.get("JIRA_GET_ACCESS_TOKEN_URL")
+
+    query_params = {
+        "grant_type": "authorization_code",
+        "client_id": CLIENT_ID_JIRA,
+        "client_secret": CLIENT_SECRET_JIRA,
+        "code": code,
+        "redirect_uri": build_url(HTTPS_SCHEME, PROXY_NETLOC, JIRA_GET_ACCESS_TOKEN_URL)
+    }
+    headers = {"Accept": "application/json"}
+    url = build_url(HTTPS_SCHEME, JIRA_NETLOC, OAUTH_TOKEN_URL, None, query_params)
+
+    data = requests.post(url=url, headers=headers, data=query_params)
+
     return data.json()
 
 
