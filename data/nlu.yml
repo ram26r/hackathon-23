@@ -21,3 +21,21 @@ nlu:
       - Show me the branches
       - List all branches
       - What are the branches?
+      - branches
+
+  - intent: get_branch
+    examples: |
+      - Get branch qa_automation_anjali
+      - Show me the qa_automation_anjali
+      - qa_automation_anjali
+      - get anjali branch
+      - get anjali 
+      - anjali branch
+
+  - intent: get_pipelines
+    examples: |
+      - Get pipelines
+      - Show me the pipelines
+      - List all pipelines
+      - What are the pipelines? 
+      - pipelines

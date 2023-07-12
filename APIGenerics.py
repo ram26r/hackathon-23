@@ -150,6 +150,29 @@ class APIGenerics:
             return list1
         except:
             return list1 if len(list1) > 0 else None
+    # def get_multiple_values_from_response(self, resp, *args):
+    #     list1 = []
+    #     try:
+    #         for x in resp:
+    #             item_list = []
+    #             for y in args:
+    #                 item_list.append(x.get(y))
+    #             list1.append(item_list)
+    #         return list1 if len(list1) > 0 else None
+    #     except:
+    #         return list1 if len(list1) > 0 else None
+
+    def get_multiple_values_from_response(self, resp, *args):
+        list1 = list()
+        try:
+            for x in resp:
+                item_list = []
+                for y in args:
+                    item_list.append(x.get(y))
+                list1.append(item_list)
+            return list1
+        except:
+            return list1 if len(list1) > 0 else None
 
     '''This method is to extract the value of the field name in first index from response'''
     def get_value_from_response(self, resp, field_name):

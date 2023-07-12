@@ -14,16 +14,28 @@ stories:
   - story: User requests branches
     steps:
       - intent: get_branches
-      - action: project_form
-      - active_loop: project_form
+      - action: action_get_branches
 
-  - story: User provides project details
+  - story: User requests branch
     steps:
-      - action: project_form
-      - active_loop: project_form
-      - slot_was_set:
-          - git_token: "your-git-token"
-          - git_base_url: "your-git-base-url"
-          - git_project_id: "your-git-project-id"
-      - action: custom_actions.GetBranchesAction
+      - intent: get_branch
+      - action: get_single_branch
+
+  - story: User requests pipelines
+    steps:
+      - intent: get_pipelines
+      - action: get_pipelines
+
+
+#      - active_loop: project_form
+
+#  - story: User provides project details
+#    steps:
+#      - action: project_form
+#      - active_loop: project_form
+#      - slot_was_set:
+#          - git_token: "your-git-token"
+#          - git_base_url: "your-git-base-url"
+#          - git_project_id: "your-git-project-id"
+#      - action: custom_actions.GetBranchesAction
 
