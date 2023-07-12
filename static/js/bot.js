@@ -33,12 +33,36 @@ function handleUserInput() {
   if (message.trim() !== '') {
     addMessageToChat(message, 'User');
     // Call the chatbot API or perform desired actions with the user message
-    // Example: You can call a chatbot API here to get the response
-    // Once you receive the response, call addMessageToChat(response, 'Chatbot');
-    setTimeout(function() {
-            const response = 'This is the chatbot response';
-            addMessageToChat(response, 'Chatbot');
-        }, 1000);
+    // Example: You can use AJAX or fetch to send the user message to the server
+    fetch('/api/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: message })
+    })
+    .then(response => response.json())
+    .then(data => {
+  const botResponses = data.responses;
+
+  botResponses.forEach(response => {
+    if (response.hasOwnProperty('text')) {
+      // Handle text response
+      const textResponse = response.text;
+      addMessageToChat(textResponse, 'Chatbot');
+    } else if (response.hasOwnProperty('message')) {
+      // Handle response with 'message' property
+      const messageResponse = response.message;
+      addMessageToChat(messageResponse, 'Chatbot');
+    } else {
+      // Handle other response types or custom payloads
+      // Extract and display the relevant information from the response
+      // Add appropriate code based on the response structure
+    }
+  });
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+
     userInput.value = ''; // Clear the input field
   }
 }

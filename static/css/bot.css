@@ -74,6 +74,18 @@
       inset -5px -5px 10px #343434;
 }
 
+.chat-history::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.chat-history::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 /* Chat input */
 .chat-input {
   padding: 0.5rem;

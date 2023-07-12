@@ -1,8 +1,9 @@
 from datetime import timedelta
 
-from flask import Flask, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 from pymongo import MongoClient
 import secrets
+import requests
 
 secret_key = secrets.token_hex(16)
 print(secret_key)
@@ -14,6 +15,7 @@ app.permanent_session_lifetime = timedelta(minutes=10)
 client = MongoClient('mongodb://localhost:27017/')
 db = client['chatbot']  # Replace 'mydatabase' with your database name
 users_collection = db['users']  # Collection for storing user information
+RASA_SERVER_URL = "http://localhost:5005/webhooks/rest/webhook"
 
 
 def login_required(route_function):
@@ -72,9 +74,39 @@ def register():
 
     return render_template('login-register.html')
 
+@app.route('/api/messages', methods=['POST'])
+def api_messages():
+    if request.method == 'POST':
+        user_message = request.json.get('message')
+        payload = {
+            'sender': 'user',
+            'message': user_message
+        }
+
+        # Call the Rasa server API to get the bot response
+        response = requests.post('http://localhost:5005/webhooks/rest/webhook', json=payload)
+        bot_responses = [r['text'] for r in response.json()]
+        print("json_res:", response.json())
+        print("bot_responses:", bot_responses)
+
+        return jsonify({'responses': response.json()})
+        # return response.json()
+
 @app.route('/dashboard')
 def dashboard():
     if 'username' in session:
+        # if request.method == 'POST':
+        #     user_message = request.json.get('message')
+        #     payload = {
+        #         'sender': 'user',
+        #         'message': user_message
+        #     }
+        #
+        #     response = requests.post(RASA_SERVER_URL, json=payload)
+        #     bot_responses = [r['text'] for r in response.json()]
+        #
+        #     return jsonify({'responses': bot_responses})
+
         return render_template('bot.html')
     return redirect('/login')
 

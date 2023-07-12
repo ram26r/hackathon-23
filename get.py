@@ -54,17 +54,17 @@ def get_pipelines():
 
     pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.ref, GitVariables.id, GitVariables.status)
     # print("response:", pipeline_response)
-    for item in pipeline_response:
-
-        for x in item:
-            print(str(x))
-        print("\n")
+    # for item in pipeline_response:
+    #
+    #     for x in item:
+    #         print(str(x))
+    #     print("\n")
     return pipeline_response
 
 
 # branches()
 # get_branch()
-get_pipelines()
+# get_pipelines()
 
 
 
