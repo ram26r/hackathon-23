@@ -26,6 +26,21 @@ stories:
       - intent: get_pipelines
       - action: get_pipelines
 
+  - story: User requests pipeline report
+    steps:
+      - intent: get_pipeline_report
+      - action: get_pipeline_report
+
+  - story: User requests pipeline jobs
+    steps:
+      - intent: get_pipeline_jobs
+      - action: get_pipeline_jobs
+
+  - story: User requests commits
+    steps:
+      - intent: get_commits
+      - action: get_commits
+
 
 #      - active_loop: project_form
 

@@ -20,6 +20,7 @@ def branches():
     # Call the getBranchesInProject method to retrieve the branches
     response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchesInProject, projectId)
     branch_response = git_api.get_values_from_branches(response, BranchResponseEnum.Name)
+    branch_response.append("branch count:" + str(len(branch_response)))
     print("response:", branch_response)
     return branch_response
 
@@ -35,7 +36,7 @@ def get_branch():
 
     # Call the getBranchesInProject method to retrieve the branches
     response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchById, projectId, "qa_automation_anjali")
-    branch_response = git_api.get_value_from_branch(response, BranchResponseEnum.Merged)
+    branch_response = "Merged:"+str(git_api.get_value_from_branch(response, BranchResponseEnum.Merged))
     print("response:", branch_response)
     return branch_response
 
@@ -66,18 +67,25 @@ def get_pipeline_report():
     token = "sdp-3yqMtjss-sC61L1fT8RB"
     baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
     projectId = "3544"
-    pipelineId = ""
+    pipelineId = "1917899"
 
     # Create an instance of the GitAPIMethods class
     git_api = APIGenerics()
     # Call the getBranchesInProject method to retrieve the branches
     response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetPipelineReport, projectId, pipelineId)
-    pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.total_time,
-                                                                  GitVariables.total_count, GitVariables.success_count,
-                                                                  GitVariables.failed_count, GitVariables.error_count,
-                                                                  GitVariables.skipped_count)
-    # print("response:", pipeline_response)
-    return pipeline_response
+    list1 = list()
+    list1.append("Total Time: "+str(git_api.get_value_from_response(response, GitVariables.total_time)))
+    list1.append("Total Count: "+str(git_api.get_value_from_response(response, GitVariables.total_count)))
+    list1.append("Success Count: "+str(git_api.get_value_from_response(response, GitVariables.success_count)))
+    list1.append("Failed Count: "+str(git_api.get_value_from_response(response, GitVariables.failed_count)))
+    list1.append("Error Count: "+str(git_api.get_value_from_response(response, GitVariables.error_count)))
+    list1.append("Skipped Count: "+str(git_api.get_value_from_response(response, GitVariables.skipped_count)))
+    # pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.total_time,
+    #                                                               GitVariables.total_count, GitVariables.success_count,
+    #                                                               GitVariables.failed_count, GitVariables.error_count,
+    #                                                               GitVariables.skipped_count)
+    print("response:", list1)
+    return list1
 
 
 def get_pipeline_jobs():
@@ -85,7 +93,7 @@ def get_pipeline_jobs():
     token = "sdp-3yqMtjss-sC61L1fT8RB"
     baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
     projectId = "3544"
-    pipelineId = ""
+    pipelineId = "1917899"
 
     # Create an instance of the GitAPIMethods class
     git_api = APIGenerics()
@@ -93,7 +101,7 @@ def get_pipeline_jobs():
     response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetPipelineJobs, projectId, pipelineId)
     pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.id, GitVariables.name,
                                                                   GitVariables.ref, GitVariables.status)
-    # print("response:", pipeline_response)
+    print("response:", pipeline_response)
     return pipeline_response
 
 
@@ -110,14 +118,15 @@ def get_commits():
     pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.id, GitVariables.title,
                                                                   GitVariables.committer_name, GitVariables.committer_email)
 
-    # print("response:", pipeline_response)
+    print("response:", pipeline_response)
     return pipeline_response
 
 # branches()
 # get_branch()
 # get_pipelines()
-
-
+#get_pipeline_jobs()
+#get_commits()
+#get_pipeline_report()
 
 
 

@@ -74,9 +74,9 @@ class Get_PipelineReport(Action):
         result = get_pipeline_report()
         print(result)
         for item in result:
-            for x in item:
-                dispatcher.utter_message(text=str(x))
-            dispatcher.utter_message(text="\n")
+        #     for x in item:
+        #         dispatcher.utter_message(text=str(x))
+            dispatcher.utter_message(text=item)
         # Use the dispatcher to send a message to the user
 
         return []

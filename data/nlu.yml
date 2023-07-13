@@ -39,3 +39,29 @@ nlu:
       - List all pipelines
       - What are the pipelines? 
       - pipelines
+
+  - intent: get_pipeline_report
+    examples: |
+      - Get pipeline report
+      - Show me the pipeline report
+      - List pipeline report
+      - What are the pipeline report 
+      - pipeline report
+
+  - intent: get_pipeline_jobs
+    examples: |
+      - Get pipeline jobs
+      _ get jobs
+      - Show me the pipeline jobs
+      - List pipeline jobs
+      - What are the pipeline jobs 
+      - pipeline jobs
+      - jobs
+
+  - intent: get_commits
+    examples: |
+      - Get commits
+      - Show me the commits
+      - List commits
+      - What are the commits
+      - commits

@@ -1,0 +1,25 @@
+URL: https://gitlab.dx1.lseg.com
+Token : sdp-3yqMtjss-sC61L1fT8RB
+Project ID: 3544
+
+Rasa train 
+Rasa run actions
+Rasa shell 
+rasa shell -m models --endpoints endpoints.yml
+rasa run -m models --enable-api --cors "*" --debug
+rasa run -m models --enable-api --port 5005 --actions http://localhost:5055/webhook
+rasa run -m models --endpoints endpoints.yml
+rasa run --model models/<model-name>.tar.gz --enable-api
+rasa run --endpoints endpoints.yml --enable-api
+rasa run --remote-storage <remote-storage-config> --enable-api
+Stop process:
+o	netstat -ano | findstr :5005
+o	Once you find the process ID (PID), you can use the Task Manager or a command like taskkill /PID <PID> to stop the process.
+rasa run --model models/<model-name>.tar.gz --enable-api --port 5006
+rasa shell --model models/<model-name>.tar.gz
+rasa shell --model models/<model-name>.tar.gz --port 5055
+rasa shell --model models/<model-name>.tar.gz --server http://localhost:5006
+Terminate rasa server :
+o	kill <PID>
+o	pkill -f rasa
+

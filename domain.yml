@@ -6,6 +6,10 @@ intents:
   - get_branches
   - get_branch
   - get_pipelines
+  - get_pipeline_report
+  - get_pipeline_jobs
+  - get_commits
+
 responses:
   utter_greet:
     - text: "Hello! How can I assist you?"
@@ -17,6 +21,9 @@ actions:
   - action_get_branches
   - get_single_branch
   - get_pipelines
+  - get_pipeline_report
+  - get_pipeline_jobs
+  - get_commits
 
 
 
