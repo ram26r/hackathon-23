@@ -61,6 +61,57 @@ def get_pipelines():
     #     print("\n")
     return pipeline_response
 
+def get_pipeline_report():
+    # Get the necessary inputs from the tracker
+    token = "sdp-3yqMtjss-sC61L1fT8RB"
+    baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
+    projectId = "3544"
+    pipelineId = ""
+
+    # Create an instance of the GitAPIMethods class
+    git_api = APIGenerics()
+    # Call the getBranchesInProject method to retrieve the branches
+    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetPipelineReport, projectId, pipelineId)
+    pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.total_time,
+                                                                  GitVariables.total_count, GitVariables.success_count,
+                                                                  GitVariables.failed_count, GitVariables.error_count,
+                                                                  GitVariables.skipped_count)
+    # print("response:", pipeline_response)
+    return pipeline_response
+
+
+def get_pipeline_jobs():
+    # Get the necessary inputs from the tracker
+    token = "sdp-3yqMtjss-sC61L1fT8RB"
+    baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
+    projectId = "3544"
+    pipelineId = ""
+
+    # Create an instance of the GitAPIMethods class
+    git_api = APIGenerics()
+    # Call the getBranchesInProject method to retrieve the branches
+    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetPipelineJobs, projectId, pipelineId)
+    pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.id, GitVariables.name,
+                                                                  GitVariables.ref, GitVariables.status)
+    # print("response:", pipeline_response)
+    return pipeline_response
+
+
+def get_commits():
+    # Get the necessary inputs from the tracker
+    token = "sdp-3yqMtjss-sC61L1fT8RB"
+    baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
+    projectId = "3544"
+
+    # Create an instance of the GitAPIMethods class
+    git_api = APIGenerics()
+    # Call the getBranchesInProject method to retrieve the branches
+    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetRepositoryCommits, projectId)
+    pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.id, GitVariables.title,
+                                                                  GitVariables.committer_name, GitVariables.committer_email)
+
+    # print("response:", pipeline_response)
+    return pipeline_response
 
 # branches()
 # get_branch()
