@@ -4,11 +4,22 @@ intents:
   - greet
   - goodbye
   - get_branches
-  - get_branch
+#  - get_branch
+  - get_provided_branch
   - get_pipelines
   - get_pipeline_report
   - get_pipeline_jobs
   - get_commits
+
+entities:
+  - branch_name
+slots:
+  get_provided_branch:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: branch_name
 
 responses:
   utter_greet:

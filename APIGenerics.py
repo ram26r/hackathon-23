@@ -353,3 +353,7 @@ class APIGenerics:
             return APIGenerics.get_value_from_response(self, temp_res, field)
         except:
             return GitVariables.err_msg_git_codeError
+
+    '''This method is to extract the report from job result'''
+    def get_job_report(self, resp):
+        return APIGenerics.get_values_from_response(self, resp, GitVariables.name)

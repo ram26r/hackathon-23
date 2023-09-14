@@ -25,7 +25,7 @@ def branches():
     return branch_response
 
 
-def get_branch():
+def get_branch(branch_name):
     # Get the necessary inputs from the tracker
     token = "sdp-3yqMtjss-sC61L1fT8RB"
     baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
@@ -35,7 +35,7 @@ def get_branch():
     git_api = APIGenerics()
 
     # Call the getBranchesInProject method to retrieve the branches
-    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchById, projectId, "qa_automation_anjali")
+    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchById, projectId, branch_name)
     branch_response = "Merged:"+str(git_api.get_value_from_branch(response, BranchResponseEnum.Merged))
     print("response:", branch_response)
     return branch_response

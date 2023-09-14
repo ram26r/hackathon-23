@@ -32,7 +32,7 @@ def login_required(route_function):
 def index():
     return f"Hello, {session['username']}! You are already logged in."
     # if 'username' in session:
-    #     return f"Hello, {session['username']}! You are already logged in."
+    #     return f"Hello, {session['username']}! You are already logged in
     # return redirect('/login')
 
 

@@ -23,14 +23,21 @@ nlu:
       - What are the branches?
       - branches
 
-  - intent: get_branch
+#  - intent: get_branch
+#    examples: |
+#      - Get branch qa_automation_anjali
+#      - Show me the qa_automation_anjali
+#      - qa_automation_anjali
+#      - get anjali branch
+#      - get anjali
+#      - anjali branch
+
+  - intent: get_provided_branch
     examples: |
-      - Get branch qa_automation_anjali
-      - Show me the qa_automation_anjali
-      - qa_automation_anjali
-      - get anjali branch
-      - get anjali 
-      - anjali branch
+      - I want information about branch [QA_ramkumar](branch_name)
+      - Tell me about the [QA_automation](branch_name) branch
+      - Can you get me details on branch [QA_ramkumar_fxi](branch_name)?
+      - [QA_ram](branch_name)
 
   - intent: get_pipelines
     examples: |
