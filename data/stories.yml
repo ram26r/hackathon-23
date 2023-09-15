@@ -50,6 +50,11 @@ stories:
       - intent: get_commits
       - action: get_commits
 
+  - story: User requests job report
+    steps:
+      - intent: get_job_report
+      - action: get_job_report
+
 
 #      - active_loop: project_form
 

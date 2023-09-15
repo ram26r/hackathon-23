@@ -177,3 +177,21 @@
     box-shadow: inset 2px 2px 5px #73CDBD,
           inset -2px -2px 5px #73CDBD;
 }
+
+/* Style for bot messages */
+.bot-message {
+    background-color: #E6E6E6; /* Background color for bot messages */
+    text-align: left; /* Align bot messages to the left */
+    display: flex;
+    flex-direction: column;
+    max-width: 80%; /* Limit the width of the message container */
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Style for bot images */
+.bot-image {
+    max-width: 100%; /* Ensure images fit within the message container */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 5px; /* Add space between image and text message, adjust as needed */
+}

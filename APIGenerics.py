@@ -1,6 +1,9 @@
+import base64
+
 import requests
 from APIEnumsAndConstants import *
-
+from PIL import Image
+import io
 
 class APIGenerics:
     '''This method is a generic template to send GET request and return the response'''
@@ -76,11 +79,37 @@ class APIGenerics:
                 case APIUrlEnum.GetDownloadArtifactByBranchId:
                     url = APIGenerics.construct_url(self, baseUrl, GitVariables.downloadArtifactByBranchId, *args)
 
+                # case APIUrlEnum.GetJobArtifactFile:
+                #     url = APIGenerics.construct_url(self, baseUrl, GitVariables.jobArtifactsFile, *args)
+
             return APIGenerics.genericTemplate_InvokingGETAPI(self, url, token)
         except:
             return GitVariables.err_msg_git_codeError
 
     '''This method is a generic template to send GET request and return the response'''
+    # def genericTemplate_InvokingGETAPI(self, url, token, to_json=False):
+    #     try:
+    #         headers = APIGenerics.construct_headers(self, token)
+    #         resp = APIGenerics.invoke_GETAPIs(self, url, headers)
+    #
+    #         if resp.status_code == StatusCodeEnum.SUCCESS_OK.value:
+    #             if to_json:
+    #                 return APIGenerics.convert_to_json(self, resp)
+    #             else:
+    #                 # Check if the response content type is an image and return it
+    #                 content_type = resp.headers.get("Content-Type", "")
+    #                 if content_type.startswith("image/"):
+    #                     image_data = io.BytesIO(resp.content)
+    #                     img = Image.open(image_data)
+    #                     return img
+    #                     # return resp.content
+    #                 else:
+    #                     # Handle the case when the response is not an image
+    #                     return APIGenerics.return_generic_error_msg(self, resp.status_code)
+    #         else:
+    #             return APIGenerics.return_generic_error_msg(self, resp.status_code)
+    #     except Exception as e:
+    #         return str(e)
     def genericTemplate_InvokingGETAPI(self, url, token, to_json=True):
         try:
             headers = APIGenerics.construct_headers(self, token)
@@ -91,6 +120,38 @@ class APIGenerics:
                 return APIGenerics.return_generic_error_msg(self, resp.status_code)
         except:
             return GitVariables.err_msg_git_codeError
+
+    '''This method is to send GET request and return the image response'''
+    def jobArtifact_File_GetAPI(self, baseUrl, token, methodEnum, *args):
+        # url = APIGenerics.construct_url(self, baseUrl, GitVariables.jobArtifactsFile, *args)
+        try:
+            match methodEnum:
+                case APIUrlEnum.GetJobArtifactFile:
+                    url = APIGenerics.construct_url(self, baseUrl, GitVariables.jobArtifactsFile, *args)
+
+
+            headers = APIGenerics.construct_headers(self, token)
+            resp = APIGenerics.invoke_GETAPIs(self, url, headers)
+
+            if resp.status_code == StatusCodeEnum.SUCCESS_OK.value:
+                content_type = resp.headers.get("Content-Type", "")
+                if content_type.startswith("image/"):
+                    image_data = io.BytesIO(resp.content)
+                    img = Image.open(image_data)
+                    img_data = io.BytesIO()
+                    img.save(img_data, format="PNG")  # You can specify the format you need
+                    img_base64 = base64.b64encode(img_data.getvalue()).decode()
+
+                    return img_base64
+                    # return img
+                    # return resp.content
+                else:
+                    # Handle the case when the response is not an image
+                    return APIGenerics.return_generic_error_msg(self, resp.status_code)
+            else:
+                return APIGenerics.return_generic_error_msg(self, resp.status_code)
+        except Exception as e:
+            return str(e)
 
     '''This method is to send GET request and return the response'''
     def invoke_GETAPIs(self, url, headers):
@@ -355,5 +416,3 @@ class APIGenerics:
             return GitVariables.err_msg_git_codeError
 
     '''This method is to extract the report from job result'''
-    def get_job_report(self, resp):
-        return APIGenerics.get_values_from_response(self, resp, GitVariables.name)

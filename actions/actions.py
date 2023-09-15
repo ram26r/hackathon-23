@@ -139,3 +139,18 @@ class Get_Commits(Action):
 
         return []
 
+class Get_Job_Report(Action):
+    def name(self) -> Text:
+        return "get_job_report"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Call your Python method here
+        result = get_jobs_artifact_file()
+        print(result)
+        dispatcher.utter_message(image=result)
+
+        return []
+

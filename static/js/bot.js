@@ -48,10 +48,16 @@ function handleUserInput() {
       // Handle text response
       const textResponse = response.text;
       addMessageToChat(textResponse, 'Chatbot');
-    } else if (response.hasOwnProperty('message')) {
-      // Handle response with 'message' property
-      const messageResponse = response.message;
-      addMessageToChat(messageResponse, 'Chatbot');
+    } else if (response.hasOwnProperty('image')) {
+        // Handle image response
+        const imageResponse = response.image;
+
+        // Create an <img> element and set its source to the base64-encoded image data
+        const imgElement = document.createElement('img');
+        imgElement.src = `data:image/png;base64,${imageResponse}`;
+
+        // Append the image to the chat or wherever you want to display it
+        addImageToChat(imgElement, 'Chatbot');
     } else {
       // Handle other response types or custom payloads
       // Extract and display the relevant information from the response

@@ -35,6 +35,7 @@ actions:
   - get_pipeline_report
   - get_pipeline_jobs
   - get_commits
+  - get_job_report
 
 
 

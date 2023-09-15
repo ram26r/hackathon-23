@@ -72,3 +72,9 @@ nlu:
       - List commits
       - What are the commits
       - commits
+
+  - intent: get_job_report
+    examples: |
+      - Get job report
+      - Show me the job report
+

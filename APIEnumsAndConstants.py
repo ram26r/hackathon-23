@@ -32,6 +32,7 @@ class GitVariables:
     downloadArtifactsArchive = "/projects/{}/jobs/artifacts/{}/download?job={}"
     downloadArtifactByJobId = "/projects/{}/jobs/{}/artifacts/{}"
     downloadArtifactByBranchId = "/projects/{}/jobs/artifacts/{}/raw/{}?job={}"
+    jobArtifactsFile = "/projects/{}/jobs/{}/artifacts/target/Cucumber-combined/PieChart.png"
     oAuthToken = "/oauth/token"
     oAuthReqBody = "grant_type=password&username={}&password={}"
 
@@ -116,6 +117,7 @@ class APIUrlEnum(Enum):
     GetDownloadArtifacts = 20,
     GetDownloadArtifactByJobId = 21,
     GetDownloadArtifactByBranchId = 22
+    GetJobArtifactFile = 23
 
 
 class CommitResponseEnum(Enum):

@@ -121,12 +121,29 @@ def get_commits():
     print("response:", pipeline_response)
     return pipeline_response
 
+def get_jobs_artifact_file():
+    # Get the necessary inputs from the tracker
+    token = "sdp-3yqMtjss-sC61L1fT8RB"
+    baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
+    projectId = "3544"
+    jobID = "12631933"
+
+    # Create an instance of the GitAPIMethods class
+    git_api = APIGenerics()
+    # Call the getBranchesInProject method to retrieve the branches
+    response = git_api.jobArtifact_File_GetAPI(baseUrl, token, APIUrlEnum.GetJobArtifactFile, projectId, jobID)
+    # pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.id, GitVariables.name,
+    #                                                               GitVariables.ref, GitVariables.status)
+    print("response:", response)
+    return response
+
 # branches()
 # get_branch()
 # get_pipelines()
-#get_pipeline_jobs()
+# get_pipeline_jobs()
 #get_commits()
 #get_pipeline_report()
+# get_jobs_artifact_file()
 
 
 
