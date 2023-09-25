@@ -84,7 +84,7 @@ class APIGenerics:
 
             return APIGenerics.genericTemplate_InvokingGETAPI(self, url, token)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is a generic template to send GET request and return the response'''
     # def genericTemplate_InvokingGETAPI(self, url, token, to_json=False):
@@ -119,7 +119,7 @@ class APIGenerics:
             else:
                 return APIGenerics.return_generic_error_msg(self, resp.status_code)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to send GET request and return the image response'''
     def jobArtifact_File_GetAPI(self, baseUrl, token, methodEnum, *args):
@@ -266,7 +266,7 @@ class APIGenerics:
                     field = GitVariables.created_at
             return APIGenerics.get_values_from_response(self, resp, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the value of the field name from commits response based on the Enum passed'''
     def get_value_from_single_commit(self, resp, commitsEnum):
@@ -295,7 +295,7 @@ class APIGenerics:
                     field = GitVariables.created_at
             return APIGenerics.get_value_from_response(self, resp, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the value of the field name from branch response based on the Enum passed'''
     def get_value_from_branch(self, resp, branchEnum):
@@ -316,7 +316,7 @@ class APIGenerics:
                     field = GitVariables.web_url
             return APIGenerics.get_value_from_response(self, resp, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the values of the field name from branches response based on the Enum passed'''
     def get_values_from_branches(self, resp, branchEnum):
@@ -337,7 +337,7 @@ class APIGenerics:
                     field = GitVariables.web_url
             return APIGenerics.get_values_from_response(self, resp, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the values of the field name from pipelines response based on the Enum passed'''
     def get_values_from_pipelines(self, resp, pipeEnum):
@@ -368,7 +368,7 @@ class APIGenerics:
                     field = GitVariables.updated_at
             return APIGenerics.get_values_from_response(self, resp, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the values of the field name from pipeline test report  based on the Enum passed'''
     def get_from_pipe_test_report(self, resp, pipeEnum):
@@ -389,7 +389,7 @@ class APIGenerics:
                     field = GitVariables.error_count
             return APIGenerics.get_value_from_response(self, resp, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the values of the field name from pipe test summary based on the Enum passed'''
     def get_from_pipe_test_report_sum(self, resp, pipeEnum):
@@ -413,6 +413,6 @@ class APIGenerics:
                     field = GitVariables.suite_error
             return APIGenerics.get_value_from_response(self, temp_res, field)
         except:
-            return GitVariables.err_msg_git_codeError
+            return GitVariables.err_msg_git_infoError
 
     '''This method is to extract the report from job result'''

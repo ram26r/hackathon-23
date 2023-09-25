@@ -36,7 +36,7 @@ def get_branch(branch_name):
 
     # Call the getBranchesInProject method to retrieve the branches
     response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchById, projectId, branch_name)
-    branch_response = "Merged:"+str(git_api.get_value_from_branch(response, BranchResponseEnum.Merged))
+    branch_response = str(git_api.get_value_from_branch(response, BranchResponseEnum.Merged))
     print("response:", branch_response)
     return branch_response
 

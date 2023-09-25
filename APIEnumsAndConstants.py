@@ -44,6 +44,7 @@ class GitVariables:
     err_msg_git_backend = "Unable to process request. Please try after sometime.."
     err_msg_git_notFound = "Requested resource not found."
     err_msg_git_codeError = "An exception occurred"
+    err_msg_git_infoError = "OOPS! Information is not available for you request"
 
     # region values that are used in git
     name = "name"
