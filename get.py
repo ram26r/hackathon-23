@@ -25,7 +25,7 @@ def branches():
     return branch_response
 
 
-def get_branch():
+def get_branch(branch_name):
     # Get the necessary inputs from the tracker
     token = "sdp-3yqMtjss-sC61L1fT8RB"
     baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
@@ -35,8 +35,8 @@ def get_branch():
     git_api = APIGenerics()
 
     # Call the getBranchesInProject method to retrieve the branches
-    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchById, projectId, "qa_automation_anjali")
-    branch_response = "Merged:"+str(git_api.get_value_from_branch(response, BranchResponseEnum.Merged))
+    response = git_api.invoke_git_GetAPIs(baseUrl, token, APIUrlEnum.GetBranchById, projectId, branch_name)
+    branch_response = str(git_api.get_value_from_branch(response, BranchResponseEnum.Merged))
     print("response:", branch_response)
     return branch_response
 
@@ -121,12 +121,29 @@ def get_commits():
     print("response:", pipeline_response)
     return pipeline_response
 
+def get_jobs_artifact_file():
+    # Get the necessary inputs from the tracker
+    token = "sdp-3yqMtjss-sC61L1fT8RB"
+    baseUrl = "https://gitlab.dx1.lseg.com/api/v4"
+    projectId = "3544"
+    jobID = "12631933"
+
+    # Create an instance of the GitAPIMethods class
+    git_api = APIGenerics()
+    # Call the getBranchesInProject method to retrieve the branches
+    response = git_api.jobArtifact_File_GetAPI(baseUrl, token, APIUrlEnum.GetJobArtifactFile, projectId, jobID)
+    # pipeline_response = git_api.get_multiple_values_from_response(response, GitVariables.id, GitVariables.name,
+    #                                                               GitVariables.ref, GitVariables.status)
+    print("response:", response)
+    return response
+
 # branches()
 # get_branch()
 # get_pipelines()
-#get_pipeline_jobs()
+# get_pipeline_jobs()
 #get_commits()
 #get_pipeline_report()
+# get_jobs_artifact_file()
 
 
 

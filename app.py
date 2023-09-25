@@ -32,7 +32,7 @@ def login_required(route_function):
 def index():
     return f"Hello, {session['username']}! You are already logged in."
     # if 'username' in session:
-    #     return f"Hello, {session['username']}! You are already logged in."
+    #     return f"Hello, {session['username']}! You are already logged in
     # return redirect('/login')
 
 
@@ -74,6 +74,24 @@ def register():
 
     return render_template('login-register.html')
 
+# @app.route('/api/messages', methods=['POST'])
+# def api_messages():
+#     if request.method == 'POST':
+#         user_message = request.json.get('message')
+#         payload = {
+#             'sender': 'user',
+#             'message': user_message
+#         }
+#
+#         # Call the Rasa server API to get the bot response
+#         response = requests.post('http://localhost:5005/webhooks/rest/webhook', json=payload)
+#         print(response.json)
+#         bot_responses = [r['text'] for r in response.json()]
+#         print("json_res:", response.json())
+#         print("bot_responses:", bot_responses)
+#
+#         return jsonify({'responses': response.json()})
+
 @app.route('/api/messages', methods=['POST'])
 def api_messages():
     if request.method == 'POST':
@@ -85,12 +103,39 @@ def api_messages():
 
         # Call the Rasa server API to get the bot response
         response = requests.post('http://localhost:5005/webhooks/rest/webhook', json=payload)
-        bot_responses = [r['text'] for r in response.json()]
-        print("json_res:", response.json())
-        print("bot_responses:", bot_responses)
+        print(response.json)
+        bot_responses = response.json()
 
-        return jsonify({'responses': response.json()})
-        # return response.json()
+        # Modify the bot responses as needed
+        modified_bot_responses = []
+        for bot_response in bot_responses:
+            if 'text' in bot_response:
+                # Handle text response
+                modified_text_response = modify_text_response(bot_response['text'])
+                modified_bot_responses.append({'text': modified_text_response})
+            elif 'image' in bot_response:
+                # Handle image response
+                modified_image_response = modify_image_response(bot_response['image'])
+                modified_bot_responses.append({'image': modified_image_response})
+            else:
+                print("error occured")
+                # Handle other response types or custom payloads
+                # Extract and modify the relevant information from the response
+                # Add appropriate code based on the response structure
+
+        print("Modified bot_responses:", modified_bot_responses)
+
+        return jsonify({'responses': modified_bot_responses})
+
+# Example modification functions (customize these as needed)
+def modify_text_response(text):
+    # Add custom modifications to the text response
+    return text
+
+def modify_image_response(image_data):
+    # Add custom modifications to the image response
+    return image_data
+
 
 @app.route('/dashboard')
 def dashboard():

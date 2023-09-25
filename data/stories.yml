@@ -18,8 +18,17 @@ stories:
 
   - story: User requests branch
     steps:
-      - intent: get_branch
+      - intent: get_provided_branch
+        entities:
+        - branch_name: QA_ramkumar
+      - slot_was_set:
+        - get_provided_branch: QA_automation
       - action: get_single_branch
+
+#  - story: User requests branch
+#    steps:
+#      - intent: get_branch
+#      - action: get_single_branch
 
   - story: User requests pipelines
     steps:
@@ -40,6 +49,11 @@ stories:
     steps:
       - intent: get_commits
       - action: get_commits
+
+  - story: User requests job report
+    steps:
+      - intent: get_job_report
+      - action: get_job_report
 
 
 #      - active_loop: project_form
